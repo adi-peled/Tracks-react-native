@@ -6,7 +6,7 @@ import { Context as LocationContext } from '../context/LocationContext'
 
 const Map = () => {
 
-    const { state: { currLocation } } = useContext(LocationContext)
+    const { state: { currLocation, locations } } = useContext(LocationContext)
     if (!currLocation) {
         return <ActivityIndicator size='large' style={{ marginTop: 200 }} />
     }
@@ -23,7 +23,8 @@ const Map = () => {
             strokeColor="rgba(158,158,255,1)"
             fillColor="rgba(158,158,255,.3)"
         />
-        {/* <Polyline coordinates={points} /> */}
+
+        <Polyline coordinates={locations.map(loc => loc.coords)} />
     </MapView>
 
 }
